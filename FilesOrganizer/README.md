@@ -8,4 +8,4 @@ Help - to see all available commands.
 
 Tree - to see tree structure of all files and folders present.
 
-Organize - to sort the files and recursive folder files in following recursive folder types - Documents, Pictures, Audios, Videos, Applications.
+Organize - to sort the files and recursive folder files in following recursive folder types - Documents, Pictures, Audios, Videos, Applications, Archives.
