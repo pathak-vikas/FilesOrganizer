@@ -16,7 +16,7 @@ let dirPath = argsarr[1]; // Path specifed at Run time / CommandLine
 switch (command) {
 
     case "tree":
-        treeObj.treeKey(dirPath); 
+        treeObj.treeStrucDirKey(dirPath); 
         break;
     case "organize":
         organizeObj.organizeKey(dirPath);
