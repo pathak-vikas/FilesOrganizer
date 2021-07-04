@@ -1,0 +1,15 @@
+{
+  "name": "FilesOrganizer",
+  "version": "1.0.0",
+  "description": "NodeJS based Global Files Organizer i.e. whichever folder it is present it will sort that folder basis on file extensions and predifined folder Types.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "fso": "app.js"
+  }
+}

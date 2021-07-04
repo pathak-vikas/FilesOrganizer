@@ -4,7 +4,6 @@
 let fs = require("fs"); // FileSystem Module Imported For Reading,writing,copying, deleting, checking existence etc
 let path = require("path"); // Path Module mainly for managing the ambquity of WINDOWS AND LINUX "\" "/" Syntax difference 
 // path module handles that ambiguity and also provides us with different helping functions like extname,basename
-let utliObj = require("./utility");
 let helpObj = require("./commands/help");
 let treeObj = require("./commands/treeStrucDir");
 let organizeObj = require("./commands/OrganizeNonRecursive");
