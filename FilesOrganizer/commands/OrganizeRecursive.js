@@ -12,12 +12,12 @@ function OrganizeRecursive(dirPath) {
         let currDir = process.cwd();
         dirPath = currDir;
         // 2. create -> organized_files_folder -> directory
-        destPath = createOrganizedFiles_Folder(dirPath);
+        //  destPath = createOrganizedFiles_Folder(dirPath);
     } else {
         let doesExist = fs.existsSync(dirPath);
         if (doesExist) {
             // 2. create -> organized_files_folder -> directory
-            destPath = createOrganizedFiles_Folder(dirPath);
+            //destPath = createOrganizedFiles_Folder(dirPath);
         } else {
 
             console.log("Kindly enter the correct path");
@@ -26,7 +26,7 @@ function OrganizeRecursive(dirPath) {
 
     }
     // 3. identify categories of all the files present in that input directory  ->
-    OrganizeRecursive_Helper(dirPath, destPath);
+    OrganizeRecursive_Helper(dirPath);
 }
 
 function createOrganizedFiles_Folder(dirPath) {
@@ -38,9 +38,29 @@ function createOrganizedFiles_Folder(dirPath) {
     return destPath;
 }
 
-function OrganizeRecursive_Helper(srcPath, destPath) {
+function OrganizeRecursive_Helper(srcPath) {
     // 3. identify categories of all the files present in that input directory  ->
     let childNames = fs.readdirSync(srcPath);
+    let destPath;
+    if (childNames.length == 0) {
+        //if there is no children i.e. no files in current folder--- no need to do anything - 
+        //since if there is no files --> we dont need any sorting as simple as that
+        //simply return on such cases
+        return;
+    }
+    else {
+        //if only folders are present dont do anything
+        for (let i = 0; i < childNames.length; i++) {
+            let childAddress = path.join(srcPath, childNames[i]);
+            let isFile = fs.lstatSync(childAddress).isFile();
+            if (isFile) {
+                // if files are present make one organized folder 
+                destPath = createOrganizedFiles_Folder(srcPath);
+                break;
+            }
+
+        }
+    }
     // console.log(childNames);
     for (let i = 0; i < childNames.length; i++) {
         let childAddress = path.join(srcPath, childNames[i]);
@@ -51,6 +71,10 @@ function OrganizeRecursive_Helper(srcPath, destPath) {
             //console.log(childNames[i], "belongs to --> ", category);
             // 4. copy / cut  files to that organized directory inside of any of category folder 
             sendFiles(childAddress, destPath, category);
+        }
+        else {
+
+            OrganizeRecursive_Helper(childAddress);
         }
     }
 
@@ -81,17 +105,6 @@ function getCategory(name) {
     }
     return "Others";
 }
-
-
-
-
-
-
-
-
-
-
-
 module.exports = {
     organizeKey2: OrganizeRecursive
 }
